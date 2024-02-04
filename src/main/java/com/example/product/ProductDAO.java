@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 public class ProductDAO {
 	@Autowired
 	SqlSession sqlSession;
-	public List<Map<String, Object>> list(){
-		return sqlSession.selectList("product.list");
+	public List<Map<String, Object>> list(String product_name){
+		return sqlSession.selectList("product.list", "%"+product_name+"%");
 	}
 
 	public void insert(Map<String, Object> map) {

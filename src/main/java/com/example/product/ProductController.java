@@ -18,8 +18,8 @@ public class ProductController {
 	@Autowired
 	ProductDAO productDao;
 	@RequestMapping("/list")
-	public List<Map<String, Object>> list(){
-		return productDao.list();
+	public List<Map<String, Object>> list(@RequestParam(defaultValue="") String product_name){
+		return productDao.list(product_name);
 	}
 
 	@RequestMapping("/insert")

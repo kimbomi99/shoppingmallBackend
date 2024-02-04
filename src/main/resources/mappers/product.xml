@@ -3,6 +3,7 @@
 <mapper namespace="product">
 	<select id="list" resultType="java.util.Map">
 		select * from product
+		where product_name like #{product_name}
 		order by product_name
 	</select>
 	<insert id="insert">
