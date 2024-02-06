@@ -11,4 +11,8 @@
 		values
 		(#{product_name}, #{description}, #{price}, #{filename})
 	</insert>
+	<select id="detail" resultType="java.util.Map">
+		select * from product
+		where product_code=#{product_code}
+	</select>
 </mapper>

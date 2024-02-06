@@ -19,4 +19,8 @@ public class ProductDAO {
 		sqlSession.insert("product.insert", map);
 	}
 
+	public Map<String, Object> detail(String product_code){
+		return sqlSession.selectOne("product.detail", product_code);
+	}
+
 }
