@@ -45,5 +45,40 @@ public class ProductController {
 		return productDao.detail(product_code);
 	}
 
+	@RequestMapping("/update")
+	public void update(@RequestParam Map<String, Object> map, @RequestParam(required = false) MultipartFile img, HttpServletRequest request) {
+		String filename="-";
+		if(img != null&& !img.isEmpty()) {
+			filename= img.getOriginalFilename();
+			try {
+				ServletContext application = request.getSession().getServletContext();
+				String path = application.getRealPath("/static/images/");
+				img.transferTo(new File(path+filename));
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+			String product_code=map.get("product_code").toString();
+			Map<String, Object> product = productDao.detail(product_code);
+			filename=product.get("filename").toString();
+		}
+		map.put("filename", filename);
+		productDao.update(map);
+	}
 
+	@RequestMapping("/delete")
+	public void delete(int product_code, HttpServletRequest request) {
+		String filename= productDao.filename(product_code);
+
+		if(filename!= null && !filename.equals("-")) {
+			ServletContext application = request.getSession().getServletContext();
+			String path = application.getRealPath("/static/images/");
+			File file = new File(path+filename);
+
+			if(file.exists()) {
+				file.delete();
+			}
+		}
+		productDao.delete(product_code);
+	}
 }
