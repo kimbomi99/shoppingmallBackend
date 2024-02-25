@@ -18,6 +18,10 @@ import jakarta.servlet.http.HttpServletRequest;
 public class ProductController {
 	@Autowired
 	ProductDAO productDao;
+
+	@Autowired
+	NoticeDAO noticeDao;
+
 	@RequestMapping("/list")
 	public List<Map<String, Object>> list(@RequestParam(defaultValue="") String product_name){
 		return productDao.list(product_name);
@@ -81,4 +85,8 @@ public class ProductController {
 		}
 		productDao.delete(product_code);
 	}
+
+
+
+
 }
