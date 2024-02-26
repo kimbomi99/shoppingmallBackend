@@ -19,5 +19,11 @@ public class NoticeDAO {
 	public Map<String, Object> detail(String notice_number){
 		return sqlSession.selectOne("notice.detail", notice_number);
 	}
+	public void update(Map<String, Object> map) {
+		sqlSession.update("notice.update", map);
+	}
+	public void delete(int notice_number) {
+		sqlSession.delete("notice.delete", notice_number);
+	}
 
 }

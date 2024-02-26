@@ -18,4 +18,15 @@
 		where notice_number=#{notice_number}
 	</select>
 	
+	<update id="update">
+		update notice
+		set title=#{title},
+			notice=#{notice}
+		where notice_number=#{notice_number}
+	</update>
+	<delete id="delete">
+		delete from notice
+		where notice_number=#{notice_number}
+	</delete>
+	
 </mapper>

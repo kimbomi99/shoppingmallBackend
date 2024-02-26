@@ -29,4 +29,13 @@ public class NoticeController {
 	public Map<String, Object> detail(@PathVariable String notice_number){
 		return noticeDao.detail(notice_number);
 	}
+
+	@RequestMapping("/updateNotice")
+	public void update(@RequestParam Map<String, Object> map) {
+		noticeDao.update(map);
+	}
+	@RequestMapping("/deleteNotice")
+	public void delete(int notice_number) {
+		noticeDao.delete(notice_number);
+	}
 }
